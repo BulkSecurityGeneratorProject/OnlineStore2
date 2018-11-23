@@ -225,6 +225,39 @@ public class CacheConfiguration {
             registerPredefinedCache(com.mycompany.myapp.domain.User.class.getName() + ".authorities", new JCache<Object, Object>(
                 cacheManager.getCache(com.mycompany.myapp.domain.User.class.getName() + ".authorities").getAdvancedCache(), this,
                 ConfigurationAdapter.create()));
+            registerPredefinedCache(com.mycompany.myapp.domain.Product.class.getName(), new JCache<Object, Object>(
+                cacheManager.getCache(com.mycompany.myapp.domain.Product.class.getName()).getAdvancedCache(), this,
+                ConfigurationAdapter.create()));
+            registerPredefinedCache(com.mycompany.myapp.domain.ProductCategory.class.getName(), new JCache<Object, Object>(
+                cacheManager.getCache(com.mycompany.myapp.domain.ProductCategory.class.getName()).getAdvancedCache(), this,
+                ConfigurationAdapter.create()));
+            registerPredefinedCache(com.mycompany.myapp.domain.Customer.class.getName(), new JCache<Object, Object>(
+                cacheManager.getCache(com.mycompany.myapp.domain.Customer.class.getName()).getAdvancedCache(), this,
+                ConfigurationAdapter.create()));
+            registerPredefinedCache(com.mycompany.myapp.domain.Customer.class.getName() + ".orders", new JCache<Object, Object>(
+                cacheManager.getCache(com.mycompany.myapp.domain.Customer.class.getName() + ".orders").getAdvancedCache(), this,
+                ConfigurationAdapter.create()));
+            registerPredefinedCache(com.mycompany.myapp.domain.ProductOrder.class.getName(), new JCache<Object, Object>(
+                cacheManager.getCache(com.mycompany.myapp.domain.ProductOrder.class.getName()).getAdvancedCache(), this,
+                ConfigurationAdapter.create()));
+            registerPredefinedCache(com.mycompany.myapp.domain.ProductOrder.class.getName() + ".orderItems", new JCache<Object, Object>(
+                cacheManager.getCache(com.mycompany.myapp.domain.ProductOrder.class.getName() + ".orderItems").getAdvancedCache(), this,
+                ConfigurationAdapter.create()));
+            registerPredefinedCache(com.mycompany.myapp.domain.ProductOrder.class.getName() + ".invoices", new JCache<Object, Object>(
+                cacheManager.getCache(com.mycompany.myapp.domain.ProductOrder.class.getName() + ".invoices").getAdvancedCache(), this,
+                ConfigurationAdapter.create()));
+            registerPredefinedCache(com.mycompany.myapp.domain.OrderItem.class.getName(), new JCache<Object, Object>(
+                cacheManager.getCache(com.mycompany.myapp.domain.OrderItem.class.getName()).getAdvancedCache(), this,
+                ConfigurationAdapter.create()));
+            registerPredefinedCache(com.mycompany.myapp.domain.Invoice.class.getName(), new JCache<Object, Object>(
+                cacheManager.getCache(com.mycompany.myapp.domain.Invoice.class.getName()).getAdvancedCache(), this,
+                ConfigurationAdapter.create()));
+            registerPredefinedCache(com.mycompany.myapp.domain.Invoice.class.getName() + ".shipments", new JCache<Object, Object>(
+                cacheManager.getCache(com.mycompany.myapp.domain.Invoice.class.getName() + ".shipments").getAdvancedCache(), this,
+                ConfigurationAdapter.create()));
+            registerPredefinedCache(com.mycompany.myapp.domain.Shipment.class.getName(), new JCache<Object, Object>(
+                cacheManager.getCache(com.mycompany.myapp.domain.Shipment.class.getName()).getAdvancedCache(), this,
+                ConfigurationAdapter.create()));
             // jhipster-needle-infinispan-add-entry
             if (jHipsterProperties.getCache().getInfinispan().isStatsEnabled()) {
                 for (String cacheName : cacheManager.getCacheNames()) {
