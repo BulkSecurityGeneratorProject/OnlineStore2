@@ -32,7 +32,7 @@ public class ProductCategory implements Serializable {
     private String description;
 
     @ManyToOne
-    @JsonIgnoreProperties("")
+    @JsonIgnoreProperties("productCategories")
     private Product product;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

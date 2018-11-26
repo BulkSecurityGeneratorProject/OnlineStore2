@@ -39,7 +39,14 @@
             "fieldType": "String"
         }
     ],
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "productCategory",
+            "otherEntityName": "productCategory",
+            "otherEntityRelationshipName": "product"
+        }
+    ],
     "changelogDate": "20181121172754",
     "javadoc": "Product sold by the Online store",
     "entityTableName": "product",

@@ -67,13 +67,14 @@ Customer{user(login)} to User
 }
 relationship ManyToOne { 
 OrderItem{product(name)} to Product
-ProductCategory{product(name)} to Product 
+ 
 }
 relationship OneToMany {
 Customer{order} to ProductOrder{customer(email)}, 
 ProductOrder{orderItem} to OrderItem{order(code)}, 
 ProductOrder{invoice} to Invoice{order(code)}, 
 Invoice{shipment} to Shipment{invoice(code)}, 
+Product to ProductCategory{product(name)} 
 }
 service * with serviceClass
    paginate Product, Customer, ProductOrder, Invoice, Shipment, OrderItem with

@@ -1,5 +1,6 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -9,6 +10,8 @@ import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 import com.mycompany.myapp.domain.enumeration.Size;
@@ -55,6 +58,9 @@ public class Product implements Serializable {
     @Column(name = "category")
     private String category;
 
+    @OneToMany(mappedBy = "product")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<ProductCategory> productCategories = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -153,6 +159,31 @@ public class Product implements Serializable {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public Set<ProductCategory> getProductCategories() {
+        return productCategories;
+    }
+
+    public Product productCategories(Set<ProductCategory> productCategories) {
+        this.productCategories = productCategories;
+        return this;
+    }
+
+    public Product addProductCategory(ProductCategory productCategory) {
+        this.productCategories.add(productCategory);
+        productCategory.setProduct(this);
+        return this;
+    }
+
+    public Product removeProductCategory(ProductCategory productCategory) {
+        this.productCategories.remove(productCategory);
+        productCategory.setProduct(null);
+        return this;
+    }
+
+    public void setProductCategories(Set<ProductCategory> productCategories) {
+        this.productCategories = productCategories;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

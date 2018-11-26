@@ -1,3 +1,5 @@
+import { IProductCategory } from 'app/shared/model//product-category.model';
+
 export const enum Size {
     S = 'S',
     M = 'M',
@@ -15,6 +17,7 @@ export interface IProduct {
     imageContentType?: string;
     image?: any;
     category?: string;
+    productCategories?: IProductCategory[];
 }
 
 export class Product implements IProduct {
@@ -26,6 +29,7 @@ export class Product implements IProduct {
         public size?: Size,
         public imageContentType?: string,
         public image?: any,
-        public category?: string
+        public category?: string,
+        public productCategories?: IProductCategory[]
     ) {}
 }

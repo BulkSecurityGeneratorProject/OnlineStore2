@@ -258,6 +258,12 @@ public class CacheConfiguration {
             registerPredefinedCache(com.mycompany.myapp.domain.Shipment.class.getName(), new JCache<Object, Object>(
                 cacheManager.getCache(com.mycompany.myapp.domain.Shipment.class.getName()).getAdvancedCache(), this,
                 ConfigurationAdapter.create()));
+            registerPredefinedCache(com.mycompany.myapp.domain.ProductCategory.class.getName() + ".products", new JCache<Object, Object>(
+                cacheManager.getCache(com.mycompany.myapp.domain.ProductCategory.class.getName() + ".products").getAdvancedCache(), this,
+                ConfigurationAdapter.create()));
+            registerPredefinedCache(com.mycompany.myapp.domain.Product.class.getName() + ".productCategories", new JCache<Object, Object>(
+                cacheManager.getCache(com.mycompany.myapp.domain.Product.class.getName() + ".productCategories").getAdvancedCache(), this,
+                ConfigurationAdapter.create()));
             // jhipster-needle-infinispan-add-entry
             if (jHipsterProperties.getCache().getInfinispan().isStatsEnabled()) {
                 for (String cacheName : cacheManager.getCacheNames()) {
