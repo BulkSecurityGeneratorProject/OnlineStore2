@@ -6,6 +6,8 @@ import { JhiDataUtils } from 'ng-jhipster';
 
 import { IProduct } from 'app/shared/model/product.model';
 import { ProductService } from './product.service';
+import { IProductCategory } from 'app/shared/model/product-category.model';
+import { ProductCategoryService, ProductCategoryResolve, ProductCategoryComponent } from '../product-category';
 
 @Component({
     selector: 'jhi-product-update',
@@ -14,6 +16,9 @@ import { ProductService } from './product.service';
 export class ProductUpdateComponent implements OnInit {
     product: IProduct;
     isSaving: boolean;
+    productCategory: IProductCategory[];
+    categoryService: ProductCategoryComponent;
+    flag: boolean;
 
     constructor(
         private dataUtils: JhiDataUtils,
@@ -52,6 +57,7 @@ export class ProductUpdateComponent implements OnInit {
     save() {
         this.isSaving = true;
         if (this.product.id !== undefined) {
+            this.productCategory;
             this.subscribeToSaveResponse(this.productService.update(this.product));
         } else {
             this.subscribeToSaveResponse(this.productService.create(this.product));

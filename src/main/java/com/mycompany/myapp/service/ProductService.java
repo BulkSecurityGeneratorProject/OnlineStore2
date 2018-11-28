@@ -1,6 +1,7 @@
 package com.mycompany.myapp.service;
 
 import com.mycompany.myapp.domain.Product;
+import com.mycompany.myapp.domain.ProductCategory;
 import com.mycompany.myapp.repository.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -23,6 +25,10 @@ public class ProductService {
 
     private ProductRepository productRepository;
 
+    private ProductCategoryService productCategoryService;
+    
+    ProductCategory productCategory;
+
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
@@ -34,6 +40,19 @@ public class ProductService {
      * @return the persisted entity
      */
     public Product save(Product product) {
+        boolean flag = true;
+        List<ProductCategory> liftCategories = productCategoryService.findAll();
+        for (ProductCategory var : liftCategories) {
+            if(var.getName() == product.getCategory()){
+                flag= false;
+                break;
+            }
+        }
+        if (flag){
+            productCategory.setName(product.getCategory());
+            productCategory.setProduct(product);
+            productCategoryService.save(productCategory);
+        }
         log.debug("Request to save Product : {}", product);
         return productRepository.save(product);
     }
