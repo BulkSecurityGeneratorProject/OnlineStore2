@@ -57,7 +57,6 @@ export class ProductUpdateComponent implements OnInit {
     save() {
         this.isSaving = true;
         if (this.product.id !== undefined) {
-            this.productCategory;
             this.subscribeToSaveResponse(this.productService.update(this.product));
         } else {
             this.subscribeToSaveResponse(this.productService.create(this.product));
