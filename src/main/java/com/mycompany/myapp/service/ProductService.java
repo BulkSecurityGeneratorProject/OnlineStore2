@@ -51,6 +51,7 @@ public class ProductService {
         for (ProductCategory var : liftCategories) {
             if(var.getName() == product.getCategory()){
                 flag= false;
+                var.setProduct(product);
                 break;
             }
             setId = var.getId();
